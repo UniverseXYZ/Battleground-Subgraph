@@ -1,0 +1,28 @@
+type BattleEntity @entity {
+    id: ID!
+    polymorphId: BigInt! # uint256
+    skillType: BigInt! # uint256
+    statsMin: BigInt! # uint256
+    statsMax: BigInt! # uint256
+    wins: BigInt! # uint256
+    loses: BigInt! # uint256
+    accumulatedWeiBalance: BigInt! # uint256
+  }
+
+  type BattleStatistic @entity {
+    id: ID!
+    opponentOnePolymorphId: BigInt! # uint256
+    opponentOneStats: BigInt! # uint256
+    opponentOneSkillType: BigInt! # uint256
+    opponentOneAddress: Bytes!
+    opponentOneRandomNumber: BigInt! # uint256
+    opponentTwoPolymorphId: BigInt! # uint256
+    opponentTwoStats: BigInt! # uint256
+    opponentTwoSkillType: BigInt! # uint256
+    opponentTwoAddress: Bytes! # uint256
+    opponentTwoRandomNumber: BigInt! # uint256
+    winnerId: BigInt! # uint256
+    loserId: BigInt! # uint256
+    wager: BigInt! # uint256
+    roundIndex: BigInt! # uint256
+  }

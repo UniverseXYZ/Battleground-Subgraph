@@ -1,0 +1,38 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Contract
+    network: rinkeby
+    source:
+      address: "0xc7405Df2282eFAf0c4d772CA5B49E47bAa091b4f"
+      abi: Contract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - LogBattleEntered
+        - LogLinkExchanged
+        - LogPolymorphsBattled
+        - LogRewardsClaimed
+        - LogRoundExecuted
+        - LogRoundStarted
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: LogBattleEntered(uint256,uint256,address,uint256,uint256,uint256)
+          handler: handleLogBattleEntered
+        - event: LogLinkExchanged(uint256,uint256,address)
+          handler: handleLogLinkExchanged
+        - event: LogPolymorphsBattled(uint256,uint256,uint256,address,uint256,uint256,uint256,uint256,address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleLogPolymorphsBattled
+        - event: LogRewardsClaimed(uint256,address)
+          handler: handleLogRewardsClaimed
+        - event: LogRoundExecuted(uint256,uint256)
+          handler: handleLogRoundExecuted
+        - event: LogRoundStarted(uint256,uint256)
+          handler: handleLogRoundStarted
+      file: ./src/mapping.ts
