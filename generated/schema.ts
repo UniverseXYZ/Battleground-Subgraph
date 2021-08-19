@@ -95,15 +95,6 @@ export class BattleEntity extends Entity {
   set loses(value: BigInt) {
     this.set("loses", Value.fromBigInt(value));
   }
-
-  get accumulatedWeiBalance(): BigInt {
-    let value = this.get("accumulatedWeiBalance");
-    return value.toBigInt();
-  }
-
-  set accumulatedWeiBalance(value: BigInt) {
-    this.set("accumulatedWeiBalance", Value.fromBigInt(value));
-  }
 }
 
 export class BattleStatistic extends Entity {

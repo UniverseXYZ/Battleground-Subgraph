@@ -43,19 +43,13 @@ export function handleLogPolymorphsBattled(event: LogPolymorphsBattled): void {
     return
   }
 
-  let wagerInt = event.params.wager;
-
   // Update win/lose ratio of the entities
   if (firstPolymorphId == winnerId) {
     entity1.wins = entity1.wins.plus(BigInt.fromI32(1));
-    entity1.accumulatedWeiBalance = entity1.accumulatedWeiBalance.plus(wagerInt as BigInt);
     entity2.loses = entity2.loses.plus(BigInt.fromI32(1));
-    entity2.accumulatedWeiBalance = entity2.accumulatedWeiBalance.minus(wagerInt as BigInt);
   } else {
     entity2.wins = entity2.wins.plus(BigInt.fromI32(1));
-    entity2.accumulatedWeiBalance = entity2.accumulatedWeiBalance.plus(wagerInt as BigInt);
     entity1.loses = entity1.loses.plus(BigInt.fromI32(1));
-    entity1.accumulatedWeiBalance = entity1.accumulatedWeiBalance.minus(wagerInt as BigInt);
   }
 
   entity1.save();
@@ -89,4 +83,4 @@ export function handleLogRoundExecuted(event: LogRoundExecuted): void {}
 export function handleLogRoundStarted(event: LogRoundStarted): void {}
 
 
-export { runTests } from "./mapping.test";
+// export { runTests } from "./mapping.test";

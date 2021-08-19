@@ -8,6 +8,7 @@ dataSources:
     source:
       address: "0xc7405Df2282eFAf0c4d772CA5B49E47bAa091b4f"
       abi: Contract
+      startBlock: 9000000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

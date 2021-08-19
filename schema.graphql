@@ -6,7 +6,6 @@ type BattleEntity @entity {
     statsMax: BigInt! # uint256
     wins: BigInt! # uint256
     loses: BigInt! # uint256
-    accumulatedWeiBalance: BigInt! # uint256
   }
 
   type BattleStatistic @entity {
