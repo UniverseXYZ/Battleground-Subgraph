@@ -7,7 +7,8 @@
     "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ taskudis/Battleground --access-token cdaf11e8cf1b4c00b5153f8ce950bc40",
     "create-local": "graph create --node http://localhost:8020/ taskudis/Battleground",
     "remove-local": "graph remove --node http://localhost:8020/ taskudis/Battleground",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 taskudis/Battleground"
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 taskudis/Battleground",
+    "test": "graph build && ./matchstick Contract"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.20.1",

@@ -1,5 +1,6 @@
 import { clearStore, test, assert, addMetadata } from "matchstick-as/assembly/index";
-import { BigInt, log, ethereum, Address, } from "@graphprotocol/graph-ts"
+import { log } from "matchstick-as/assembly/log";
+import { BigInt, ethereum, Address, Bytes, } from "@graphprotocol/graph-ts"
 import {
   Contract,
   LogBattleEntered,
@@ -13,7 +14,7 @@ import { BattleEntity, BattleStatistic } from "../generated/schema"
 import { handleLogPolymorphsBattled } from "./mapping";
 
 export function runTests(): void {
-    test("Example", () => {
+    test("Creates BattleEntity and BattleStatistic entities", () => {
           // Hidrate the store
 
         let entity = new BattleEntity("19");
@@ -36,10 +37,10 @@ export function runTests(): void {
 
         // Initialise event (this can be generalised into a separate function)
         let base: ethereum.Event = new LogPolymorphsBattled();
-        let battleEvent: LogPolymorphsBattled = addMetadata(base);
-
+        let battleEvent: LogPolymorphsBattled = addMetadata(base) as LogPolymorphsBattled;
 
         battleEvent.parameters = [];
+        battleEvent.transaction.hash = Bytes.fromI32(1) as Bytes;
 
         let opponentOnePolymorphId = new ethereum.EventParam();
         opponentOnePolymorphId.value = ethereum.Value.fromI32(19);
@@ -104,8 +105,23 @@ export function runTests(): void {
         // Call mappings
         handleLogPolymorphsBattled(battleEvent);
 
+        let id = entity.polymorphId.toHex() + battleEvent.transaction.hash.toHex()
         // Assert the state of the store
-        assert.fieldEquals("BattleStatistic", "19", "polymorphId", "19");
+        assert.fieldEquals("BattleStatistic", id.toString(), "opponentOnePolymorphId", "19");
+        assert.fieldEquals("BattleStatistic", id.toString(), "opponentOneStats", "128");
+        assert.fieldEquals("BattleStatistic", id.toString(), "opponentOneSkillType", "1");
+        assert.fieldEquals("BattleStatistic", id.toString(), "opponentOneAddress", "0x5012a9a26866bd7897a71dd4fb7a65e6ffdd18f2");
+        assert.fieldEquals("BattleStatistic", id.toString(), "opponentOneRandomNumber", "14526196533531490963798236186445154581679566712726662689077445457583415286419");
+        assert.fieldEquals("BattleStatistic", id.toString(), "opponentTwoPolymorphId", "27");
+        assert.fieldEquals("BattleStatistic", id.toString(), "opponentTwoStats", "420");
+        assert.fieldEquals("BattleStatistic", id.toString(), "opponentTwoSkillType", "1");
+        assert.fieldEquals("BattleStatistic", id.toString(), "opponentTwoAddress", "0x5012a9a26866bd7897a71dd4fb7a65e6ffdd18f2");
+        assert.fieldEquals("BattleStatistic", id.toString(), "opponentTwoRandomNumber", "8916120779646073334181028848486145638232978673410174633725175012262491629237");
+        assert.fieldEquals("BattleStatistic", id.toString(), "winnerId", "27");
+        assert.fieldEquals("BattleStatistic", id.toString(), "loserId", "19");
+        assert.fieldEquals("BattleStatistic", id.toString(), "wager", "100000000000000000");
+        assert.fieldEquals("BattleStatistic", id.toString(), "roundIndex", "1");
+
 
         // Clear the store before the next test (optional)
         clearStore();
