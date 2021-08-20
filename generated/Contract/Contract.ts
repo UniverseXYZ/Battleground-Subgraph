@@ -127,20 +127,12 @@ export class LogPolymorphsBattled__Params {
     return this._event.parameters[9].value.toBigInt();
   }
 
-  get winnerId(): BigInt {
+  get wager(): BigInt {
     return this._event.parameters[10].value.toBigInt();
   }
 
-  get loserId(): BigInt {
-    return this._event.parameters[11].value.toBigInt();
-  }
-
-  get wager(): BigInt {
-    return this._event.parameters[12].value.toBigInt();
-  }
-
   get roundIndex(): BigInt {
-    return this._event.parameters[13].value.toBigInt();
+    return this._event.parameters[11].value.toBigInt();
   }
 }
 
@@ -930,32 +922,12 @@ export class ConstructorCall__Inputs {
     return this._call.inputValues[0].value.toAddressArray();
   }
 
+  get fees(): Array<BigInt> {
+    return this._call.inputValues[1].value.toBigIntArray();
+  }
+
   get _daoAddress(): Address {
-    return this._call.inputValues[1].value.toAddress();
-  }
-
-  get _wager(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-
-  get _daoFeeBps(): BigInt {
-    return this._call.inputValues[3].value.toBigInt();
-  }
-
-  get _operationalFeeBps(): BigInt {
-    return this._call.inputValues[4].value.toBigInt();
-  }
-
-  get _rngChainlinkCost(): BigInt {
-    return this._call.inputValues[5].value.toBigInt();
-  }
-
-  get _startRoundIncetive(): BigInt {
-    return this._call.inputValues[6].value.toBigInt();
-  }
-
-  get _finishRoundIncetive(): BigInt {
-    return this._call.inputValues[7].value.toBigInt();
+    return this._call.inputValues[2].value.toAddress();
   }
 }
 

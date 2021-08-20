@@ -74,12 +74,6 @@ export function runTests(): void {
         let bigIntParam1 = BigInt.fromString("8916120779646073334181028848486145638232978673410174633725175012262491629237");
         opponentTwoRandomNumber.value = ethereum.Value.fromUnsignedBigInt(bigIntParam1);
 
-        let winnerId = new ethereum.EventParam();
-        winnerId.value = ethereum.Value.fromI32(27);
-
-        let loserId = new ethereum.EventParam();
-        loserId.value = ethereum.Value.fromI32(19);
-
         let wager = new ethereum.EventParam();
         let bigIntParam2 = BigInt.fromString("100000000000000000");
         wager.value = ethereum.Value.fromUnsignedBigInt(bigIntParam2);
@@ -97,8 +91,6 @@ export function runTests(): void {
         battleEvent.parameters.push(opponentTwoSkillType)
         battleEvent.parameters.push(opponentTwoAddress)
         battleEvent.parameters.push(opponentTwoRandomNumber)
-        battleEvent.parameters.push(winnerId)
-        battleEvent.parameters.push(loserId)
         battleEvent.parameters.push(wager)
         battleEvent.parameters.push(roundIndex)
 

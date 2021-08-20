@@ -6,7 +6,7 @@ dataSources:
     name: Contract
     network: rinkeby
     source:
-      address: "0xc7405Df2282eFAf0c4d772CA5B49E47bAa091b4f"
+      address: "0xc65eCEc040e19fa3F07Fdf86Ff44FABBbe387E6E"
       abi: Contract
       startBlock: 9000000
     mapping:
@@ -28,7 +28,7 @@ dataSources:
           handler: handleLogBattleEntered
         - event: LogLinkExchanged(uint256,uint256,address)
           handler: handleLogLinkExchanged
-        - event: LogPolymorphsBattled(uint256,uint256,uint256,address,uint256,uint256,uint256,uint256,address,uint256,uint256,uint256,uint256,uint256)
+        - event: LogPolymorphsBattled(uint256,uint256,uint256,address,uint256,uint256,uint256,uint256,address,uint256,uint256,uint256)
           handler: handleLogPolymorphsBattled
         - event: LogRewardsClaimed(uint256,address)
           handler: handleLogRewardsClaimed

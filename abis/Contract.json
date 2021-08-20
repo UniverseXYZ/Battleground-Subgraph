@@ -2,32 +2,11 @@
   {
     "inputs": [
       { "internalType": "address[]", "name": "addresses", "type": "address[]" },
+      { "internalType": "uint256[]", "name": "fees", "type": "uint256[]" },
       {
         "internalType": "address payable",
         "name": "_daoAddress",
         "type": "address"
-      },
-      { "internalType": "uint256", "name": "_wager", "type": "uint256" },
-      { "internalType": "uint256", "name": "_daoFeeBps", "type": "uint256" },
-      {
-        "internalType": "uint256",
-        "name": "_operationalFeeBps",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_rngChainlinkCost",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_startRoundIncetive",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_finishRoundIncetive",
-        "type": "uint256"
       }
     ],
     "stateMutability": "nonpayable",
@@ -162,18 +141,6 @@
         "indexed": false,
         "internalType": "uint256",
         "name": "secondPolymorphRandomNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "winnerId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "loserId",
         "type": "uint256"
       },
       {

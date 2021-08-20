@@ -33,7 +33,31 @@ export function handleLogLinkExchanged(event: LogLinkExchanged): void {}
 export function handleLogPolymorphsBattled(event: LogPolymorphsBattled): void {
   let firstPolymorphId = event.params.firstPolymorphId
   let secondPolymorphId = event.params.secondPolymorphId
-  let winnerId = event.params.winnerId
+
+  let firstPolymorphStats = event.params.firstPolymorphStats
+  let secondPolymorphStats = event.params.secondPolymorphStats
+
+  let winnerId = BigInt.fromI32(0)
+  let loserId = BigInt.fromI32(0)
+
+  if(firstPolymorphStats > secondPolymorphStats) {
+    winnerId = firstPolymorphId
+    loserId = secondPolymorphId
+  }
+  if(secondPolymorphStats > firstPolymorphStats) {
+    winnerId = secondPolymorphId
+    loserId = firstPolymorphId
+  }
+  if(firstPolymorphStats == secondPolymorphStats) {
+    if(event.params.firstPolymorphRandomNumber > event.params.secondPolymorphRandomNumber) {
+      winnerId = firstPolymorphId
+      loserId = secondPolymorphId
+    }
+    else {
+      winnerId = secondPolymorphId
+      loserId = firstPolymorphId
+    }
+  }
 
   let entity1 = BattleEntity.load(firstPolymorphId.toString())
   let entity2 = BattleEntity.load(secondPolymorphId.toString())
@@ -62,15 +86,13 @@ export function handleLogPolymorphsBattled(event: LogPolymorphsBattled): void {
   history.opponentOneStats = event.params.firstPolymorphStats;
   history.opponentOneRandomNumber = event.params.firstPolymorphRandomNumber;
   history.opponentOneAddress = event.params.firstPolymorphAddress;
-  history.opponentOneRandomNumber = event.params.firstPolymorphRandomNumber;
   history.opponentTwoPolymorphId = event.params.secondPolymorphId;
   history.opponentTwoSkillType = event.params.secondPolymorphSkillType;
   history.opponentTwoStats = event.params.secondPolymorphStats;
   history.opponentTwoRandomNumber = event.params.secondPolymorphRandomNumber;
   history.opponentTwoAddress = event.params.secondPolymorphAddress;
-  history.opponentTwoRandomNumber = event.params.secondPolymorphRandomNumber;
-  history.winnerId = event.params.winnerId;
-  history.loserId = event.params.loserId;
+  history.winnerId = winnerId;
+  history.loserId = loserId;
   history.wager = event.params.wager;
   history.roundIndex = event.params.roundIndex;
   history.save();
@@ -81,6 +103,5 @@ export function handleLogRewardsClaimed(event: LogRewardsClaimed): void {}
 export function handleLogRoundExecuted(event: LogRoundExecuted): void {}
 
 export function handleLogRoundStarted(event: LogRoundStarted): void {}
-
 
 // export { runTests } from "./mapping.test";
